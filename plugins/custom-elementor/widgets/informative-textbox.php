@@ -21,19 +21,19 @@ class Informative_Textbox extends \Elementor\Widget_Base {
     //Edasi tegutseda
 
     /**
-     * Gets widget name
+     * Gets widget id
      * 
-     * Retrives Informative Box name
+     * Retrives Informative Box id
      * 
      * @since 1.0.0
      * @access public
-     * @return string Widget name
+     * @return string Widget id
      */
 
      //Tegemist on sisseehitatud Elementori funktsiooniga, mis paneb widgetitele
      //Vajaliku ID
     public function get_name() {
-        return 'informative_box'; //ID on sama mis nimi selles olukorras
+        return 'informative_box'; //ID
     }
 
     //Lisame ka nime, mida kasutaja peaks nagema Elementori widgetite nimekirjas
@@ -52,5 +52,23 @@ class Informative_Textbox extends \Elementor\Widget_Base {
     //Tegemist on sisse ehitatud Elementor funktiooniga, mis paneb loetava tiitli meie widgetile
     public function get_title() {
         return esc_html__('Informative Textbox', 'custom-elementor');
+    }
+
+    //Lisame widgetile ise valitud ikooni, mis vastab rohkem selle funktsionaalsusega
+    //Lisame ka METADATA vajaliku funktsiooni kohta
+    /**
+     * Get widget icon
+     * 
+     * Retrieve Informative Box icon
+     * 
+     * @since 1.0.0
+     * @access public
+     * @return string Widget icon
+     */
+
+     //Sisseehitatud funktsioon mis votab Elementori ikoonide andmebaasist kindla ikooni 
+     //ja valjastab selle Elementori vasakusse menuusse
+    public function get_icon() {
+        return 'eicon-single-post';
     }
 }
