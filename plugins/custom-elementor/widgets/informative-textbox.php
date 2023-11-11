@@ -182,6 +182,22 @@ class Informative_Textbox extends \Elementor\Widget_Base
                 ],
             ]
         );
+        //Lopetame sisu loomise sektsiooni
+        $this->end_controls_section();
+        //Lisame enda tehtud widgetile nuud ka stiili valikud, et seda saaks ilusamaks teha
+        $this->start_controls_section(
+            //ID
+            'section_style',
+            [
+                //Kontaineri nimetus
+                'label' => esc_html__('Style', 'custom-elementor'),
+                //Kuhu kontainer paigutatakse
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+
+
         //Sektsioon loppeb siin
         $this->end_controls_section();
     }
