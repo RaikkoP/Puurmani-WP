@@ -69,11 +69,15 @@ class Informative_Textbox extends \Elementor\Widget_Base
      * @return string Widget icon
      */
 
+     //Sisseehitatud funktsioon, mis kasutab Elementori sisseehitatud funktsiooni
     public function get_icon()
     {
+        //Ikoonid votame Elementori ikooni andmebaasist.
         return 'eicon-info-box';
     }
 
+
+    //Lisame vajaliku METADATA kategooriate jaoks
     /**
      * Get widget categories.
      * 
@@ -83,13 +87,16 @@ class Informative_Textbox extends \Elementor\Widget_Base
      * @access public
      * @return array Widget categories
      */
+
+     //Kasutab elementori sisseehitatud funktsiooni
     public function get_categories()
     {
+        //Saadame kategooriad arrayna edasi.
         return ['general'];
     }
-    //Sisseehitatud funktsioon mis votab Elementori ikoonide andmebaasist kindla ikooni 
-    //ja valjastab selle Elementori vasakusse menuusse
 
+
+    //Otsingu mootori jaoks on meil vaja otsingusonu lisame selle jaoks METADATA
     /**
      * Get widget keywords
      * 
@@ -99,7 +106,9 @@ class Informative_Textbox extends \Elementor\Widget_Base
      * @access public
      * @return array Widget keywords
      */
+    //Elementori funktsioon, mis lisab vajalikud otsingumootori sonad
     public function get_keywords() {
+        //Sonad, kuidas saab otsida widgetit
         return ['informative','information','textbox'];
     }
 }
