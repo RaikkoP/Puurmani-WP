@@ -136,12 +136,12 @@ class Informative_Textbox extends \Elementor\Widget_Base
             ]
         );
         //Lisame esimese tekstivalja
-        $this->add_controls(
+        $this->add_control(
             //ID
             'textbox_title',
             [
                 //Anname sellele nime Pealkiri
-                'label' => esc_html__(' Pealkiri ', 'custom-elementor'),
+                'label' => esc_html__('Pealkiri', 'custom-elementor'),
                 //Paneme, et see oleks TEXT tuupi, ehk siis tavaline tekstilahter
                 'type' => \Elementor\Controls_Manager::TEXT,
                 //Teeme selle nahtavaks
