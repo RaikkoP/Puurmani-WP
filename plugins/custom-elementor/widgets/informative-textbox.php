@@ -196,7 +196,8 @@ class Informative_Textbox extends \Elementor\Widget_Base
      * @since 1.0.0
      * @access protected
      */
-    protected function render() {
+    protected function render()
+    {
         //Renderdamise kood laheb siia
         //Votame koik eelmised vaartused ja paneme need uhte muutujasse nimega settings
         $settings = $this->get_settings_for_display();
@@ -208,15 +209,19 @@ class Informative_Textbox extends \Elementor\Widget_Base
 
         //Tahtis on nuud PHP kood kinni panna, et saaksime kirjutada HTML,CSS,JavaScript koodi nuud edasi
         //Hiljem avame jalle vajaliku PHP koodi
-        ?> 
+?>
         <div>
-            <h3><?php echo $textbox_title ?></h3>
-            <img  src="<?php echo $textbox_image?>"/>
-            <p><?php echo $textbox_description ?></p>
+            <h3 class="textbox-title"><?php echo $textbox_title ?></h3>
+            <div class="textbox-container">
+                <div class="textbox-left">
+                    <img src="<?php echo $textbox_image ?>" />
+                </div>
+                <div class="textbox-right">
+                    <p><?php echo $textbox_description ?></p>
+                </div>
+            </div>
         </div>
 
-        <?php
+<?php
     }
-
-   
 }
