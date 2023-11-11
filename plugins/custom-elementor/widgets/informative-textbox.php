@@ -31,10 +31,10 @@ class Informative_Textbox extends \Elementor\Widget_Base
      * @return string Widget name
      */
 
-    //Tegemist on sisseehitatud Elementori funktsiooniga, mis paneb widgetitele
-    //Vajaliku ID
     public function get_name()
     {
+        //Tegemist on sisseehitatud Elementori funktsiooniga, mis paneb widgetitele
+        //Vajaliku ID
         return 'informative_box'; //ID
     }
 
@@ -50,10 +50,9 @@ class Informative_Textbox extends \Elementor\Widget_Base
      * @access public
      * @return string Widget title
      */
-
-    //Tegemist on sisse ehitatud Elementor funktiooniga, mis paneb loetava tiitli meie widgetile
     public function get_title()
     {
+        //Tegemist on sisse ehitatud Elementor funktiooniga, mis paneb loetava tiitli meie widgetile
         return esc_html__('Informative Textbox', 'custom-elementor');
     }
 
@@ -68,10 +67,9 @@ class Informative_Textbox extends \Elementor\Widget_Base
      * @access public
      * @return string Widget icon
      */
-
-    //Sisseehitatud funktsioon, mis kasutab Elementori sisseehitatud funktsiooni
     public function get_icon()
     {
+        //Sisseehitatud funktsioon, mis kasutab Elementori sisseehitatud funktsiooni
         //Ikoonid votame Elementori ikooni andmebaasist.
         return 'eicon-info-box';
     }
@@ -87,10 +85,9 @@ class Informative_Textbox extends \Elementor\Widget_Base
      * @access public
      * @return array Widget categories
      */
-
-    //Kasutab elementori sisseehitatud funktsiooni
     public function get_categories()
     {
+        //Kasutab elementori sisseehitatud funktsiooni
         //Saadame kategooriad arrayna edasi.
         return ['general'];
     }
@@ -106,12 +103,13 @@ class Informative_Textbox extends \Elementor\Widget_Base
      * @access public
      * @return array Widget keywords
      */
-    //Elementori funktsioon, mis lisab vajalikud otsingumootori sonad
     public function get_keywords()
     {
+        //Elementori funktsioon, mis lisab vajalikud otsingumootori sonad
         //Sonad, kuidas saab otsida widgetit
         return ['informative', 'information', 'textbox'];
     }
+
 
     //Funktsionaalsuse lisamiseks on vaja lisada controller.
     //Controller vajab enda METADATAT
@@ -131,11 +129,28 @@ class Informative_Textbox extends \Elementor\Widget_Base
         $this->start_controls_section(
             'content_section',
             [
+                //Sektsiooni nimi
                 'label' => esc_html__('Content', 'custom-elementor'),
+                //Paigutame sektsiooni CONTENT tabi
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
-
+        //Lisame esimese tekstivalja
+        $this->add_controls(
+            //ID
+            'textbox_title',
+            [
+                //Anname sellele nime Pealkiri
+                'label' => esc_html__(' Pealkiri ', 'custom-elementor'),
+                //Paneme, et see oleks TEXT tuupi, ehk siis tavaline tekstilahter
+                'type' => \Elementor\Controls_Manager::TEXT,
+                //Teeme selle nahtavaks
+                'label_block' => true,
+                //Lisame sellele ajutiselt paigutatud teksti
+                'placeholder' => esc_html__('Pane pealkiri siia lahtrisse', 'custom-elementor')
+            ]
+        );
+        //Sektsioon loppeb siin
         $this->end_controls_section();
     }
 }
