@@ -195,10 +195,50 @@ class Informative_Textbox extends \Elementor\Widget_Base
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
+        //Lisame nuud pealkirja muutmise jaoks stiili
+        $this->add_control(
+            'textbox_title_options',
+            [
+                //Paneme seadete valikul nime
+                'label' => esc_html__('Pealkirja Seaded', 'custom-elementor'),
+                //Tapsustame, et seaded kehtivad HEADING tuupi valjale
+                'type' => \Elementor\Controls_Manager::HEADING,
+                //Seadete lahter tuleb lahutada eelmisest lahtrist
+                //Kuigi selles olukorras on tegemist esimese seadme konteineriga
+                //Siis ikkagi on hea tava see rida koodi lisada
+                'separator' => 'before',
+            ]
+        );
+        //Lisame nuud meie loodud konteinerisse tegelikud stiili muudatused
+        $this->add_control(
+            //ID
+            'title_color',
+            [
+                //NIMI
+                'title'=>'Vaheta Pealkirja Värv',
+                //TUUP
+                'type'=> \Elementor\Controls_Manager::COLOR,
+                //VAIKIMISI VAARTUS
+                'default' => '#f00',
+                //MIDA ME HTMLIS MUUDAME
+                'selectors' => [
+                    '{{WRAPPER}} h3' => 'color: {{VALUE}}',
+                ]
+            ]
+        );
+        //Lisame nuud ka fonti suuruste ja stiili muutmise seaded pealkirjale
+        $this->add_group_control(
+            //VALIME KOIK FONTI VAHETAMISE SEADED
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                //ID
+                'name' => 'title_typography',
+                //MIDA MUUDAME
+                'selector' => '{{WRAPPER}} h3',
+            ]
+        );
 
-
-
-        //Sektsioon loppeb siin
+        //Pealkirja stiilid loppevad siin
         $this->end_controls_section();
     }
     //Nuud on vaja teha funktsioon, mis renderib meile HTML koodi kasutades neid eelmiseid vaartusi, mida me loime
