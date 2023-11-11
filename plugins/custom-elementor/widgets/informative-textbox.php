@@ -150,6 +150,21 @@ class Informative_Textbox extends \Elementor\Widget_Base
                 'placeholder' => esc_html__('Pane pealkiri siia lahtrisse', 'custom-elementor')
             ]
         );
+        //Lisame nuud tekstivalja, kuhu saab lisada informatiivse kasti sisu
+        $this->add_control(
+            //ID
+            'textbox_description',
+            [
+                //Anname sellele nime Sisu
+                'label' => esc_html__('Sisu', 'custom-elementor'),
+                //Anname sellele tuubiks TEXTAREA, sest sellel on rohkem ruumi kui TEXTil
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                //Teeme kasti nahtavaks
+                'label_block' => true,
+                //Lisame ajutise sisu, et lahter ei oleks alguses tuhi
+                'placeholder' => esc_html__("Kasti sisu tuleb kirjutada siia!", 'custom-elementor'),
+            ]
+            );
         //Sektsioon loppeb siin
         $this->end_controls_section();
     }
