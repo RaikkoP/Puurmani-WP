@@ -177,6 +177,9 @@ class Informative_Textbox extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 //Teeme meedia valiku kasti nahtavaks
                 'label_block' => true,
+                'default' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
             ]
         );
         //Sektsioon loppeb siin
@@ -201,11 +204,16 @@ class Informative_Textbox extends \Elementor\Widget_Base
         //Votame koik vaartused valja settigsist ja paneme need enda muutujate sisse
         $textbox_title = $settings['textbox_title'];
         $textbox_description = $settings['textbox_description'];
-        $textbox_image = $settings['textbox_image'];
+        $textbox_image = $settings['textbox_image']['url'];
 
         //Tahtis on nuud PHP kood kinni panna, et saaksime kirjutada HTML,CSS,JavaScript koodi nuud edasi
         //Hiljem avame jalle vajaliku PHP koodi
         ?> 
+        <div>
+            <h3><?php echo $textbox_title ?></h3>
+            <img  src="<?php echo $textbox_image?>"/>
+            <p><?php echo $textbox_description ?></p>
+        </div>
 
         <?php
     }
