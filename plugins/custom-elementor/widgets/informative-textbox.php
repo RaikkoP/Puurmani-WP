@@ -21,13 +21,13 @@ class Informative_Textbox extends \Elementor\Widget_Base {
     //Edasi tegutseda
 
     /**
-     * Gets widget id
+     * Gets widget name
      * 
-     * Retrives Informative Box id
+     * Retrives Informative Box name
      * 
      * @since 1.0.0
      * @access public
-     * @return string Widget id
+     * @return string Widget name
      */
 
      //Tegemist on sisseehitatud Elementori funktsiooniga, mis paneb widgetitele
@@ -66,9 +66,9 @@ class Informative_Textbox extends \Elementor\Widget_Base {
      * @return string Widget icon
      */
 
+    // public function get_icon() {
+    //     return 'eicon-info-box';
+    // }
      //Sisseehitatud funktsioon mis votab Elementori ikoonide andmebaasist kindla ikooni 
      //ja valjastab selle Elementori vasakusse menuusse
-    public function get_icon() {
-        return 'eicon-single-post';
-    }
 }
