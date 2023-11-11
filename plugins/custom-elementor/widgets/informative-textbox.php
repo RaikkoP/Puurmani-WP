@@ -177,9 +177,6 @@ class Informative_Textbox extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 //Teeme meedia valiku kasti nahtavaks
                 'label_block' => true,
-                'default' => [
-                    'url' => \Elementor\Utils::get_placeholder_image_src(),
-                ],
             ]
         );
         //Lopetame sisu loomise sektsiooni
@@ -190,7 +187,7 @@ class Informative_Textbox extends \Elementor\Widget_Base
             'section_style',
             [
                 //Kontaineri nimetus
-                'label' => esc_html__('Style', 'custom-elementor'),
+                'label' => esc_html__('Stiil', 'custom-elementor'),
                 //Kuhu kontainer paigutatakse
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
@@ -237,7 +234,33 @@ class Informative_Textbox extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} h3',
             ]
         );
-
+        //Lisame nuud sisule samad seaded
+        $this->add_control(
+            'textbox_description_options',
+            [
+                'label' => esc_html__('Sisu seaded', 'custom-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'description_color',
+            [
+                'title'=>'Vaheta Sisu Värv',
+                'type'=> \Elementor\Controls_Manager::COLOR,
+                'default'=>'#000',
+                'selectors'=> [
+                    '{{WRAPPER}} p' => 'color: {{VALUE}}',
+                ]
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name'=>'description_typography',
+                'selector'=> '{{WRAPPER}} p',
+            ]
+        );
         //Pealkirja stiilid loppevad siin
         $this->end_controls_section();
     }
