@@ -179,8 +179,36 @@ class Informative_Textbox extends \Elementor\Widget_Base
                 'label_block' => true,
             ]
         );
-
         //Sektsioon loppeb siin
         $this->end_controls_section();
     }
+    //Nuud on vaja teha funktsioon, mis renderib meile HTML koodi kasutades neid eelmiseid vaartusi, mida me loime
+    //funktsioonis nimega register_controls, tegemist peab olema jalle protected functioniga. METADATA vajalik.
+
+    /**
+     * Render Textbox widget output in the frontend.
+     * 
+     * Written in PHP and used to generate the final HTML
+     * 
+     * @since 1.0.0
+     * @access protected
+     */
+    protected function render() {
+        //Renderdamise kood laheb siia
+        //Votame koik eelmised vaartused ja paneme need uhte muutujasse nimega settings
+        $settings = $this->get_settings_for_display();
+
+        //Votame koik vaartused valja settigsist ja paneme need enda muutujate sisse
+        $textbox_title = $settings['textbox_title'];
+        $textbox_description = $settings['textbox_description'];
+        $textbox_image = $settings['textbox_image'];
+
+        //Tahtis on nuud PHP kood kinni panna, et saaksime kirjutada HTML,CSS,JavaScript koodi nuud edasi
+        //Hiljem avame jalle vajaliku PHP koodi
+        ?> 
+
+        <?php
+    }
+
+   
 }
