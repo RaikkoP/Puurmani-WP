@@ -164,7 +164,22 @@ class Informative_Textbox extends \Elementor\Widget_Base
                 //Lisame ajutise sisu, et lahter ei oleks alguses tuhi
                 'placeholder' => esc_html__("Kasti sisu tuleb kirjutada siia!", 'custom-elementor'),
             ]
-            );
+        );
+        //Lisame pildi lisamiseks controli, pilti kasutaja ei pea lisama ja kast peaks muutuma sel juhul kui pilti pole lisatud
+        $this->add_control(
+            //ID
+            'textbox_image',
+            [
+                //Anname sellele nime Pilt
+                'label' => esc_html__('Pilt', 'custom-elementor'),
+                //Kasutame selle jaoks valikut nimega MEDIA
+                //MEDIA ei ole tekstilahter vaid laseb pilte uleslaadida WordPressi andmebaasi
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                //Teeme meedia valiku kasti nahtavaks
+                'label_block' => true,
+            ]
+        );
+
         //Sektsioon loppeb siin
         $this->end_controls_section();
     }
