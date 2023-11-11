@@ -69,7 +69,7 @@ class Informative_Textbox extends \Elementor\Widget_Base
      * @return string Widget icon
      */
 
-     //Sisseehitatud funktsioon, mis kasutab Elementori sisseehitatud funktsiooni
+    //Sisseehitatud funktsioon, mis kasutab Elementori sisseehitatud funktsiooni
     public function get_icon()
     {
         //Ikoonid votame Elementori ikooni andmebaasist.
@@ -88,7 +88,7 @@ class Informative_Textbox extends \Elementor\Widget_Base
      * @return array Widget categories
      */
 
-     //Kasutab elementori sisseehitatud funktsiooni
+    //Kasutab elementori sisseehitatud funktsiooni
     public function get_categories()
     {
         //Saadame kategooriad arrayna edasi.
@@ -107,8 +107,35 @@ class Informative_Textbox extends \Elementor\Widget_Base
      * @return array Widget keywords
      */
     //Elementori funktsioon, mis lisab vajalikud otsingumootori sonad
-    public function get_keywords() {
+    public function get_keywords()
+    {
         //Sonad, kuidas saab otsida widgetit
-        return ['informative','information','textbox'];
+        return ['informative', 'information', 'textbox'];
+    }
+
+    //Funktsionaalsuse lisamiseks on vaja lisada controller.
+    //Controller vajab enda METADATAT
+    /**
+     * Get widget controls.
+     * 
+     * Add input fields to allow customization
+     * 
+     * @since 1.0.0
+     * @access protected
+     */
+    protected function register_controls()
+    {
+        //Tapsustame, et me tahame,et jargmised seadmed laheksid meie
+        //Content Containerisse. Label tahendab seda, et me teeme alapealkirja
+        //vastavasse tabi, tabi me saame kasutades 'tab' kasku
+        $this->start_controls_section(
+            'content_section',
+            [
+                'label' => esc_html__('Content', 'custom-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->end_controls_section();
     }
 }
