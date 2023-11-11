@@ -53,7 +53,7 @@ class Informative_Textbox extends \Elementor\Widget_Base
     public function get_title()
     {
         //Tegemist on sisse ehitatud Elementor funktiooniga, mis paneb loetava tiitli meie widgetile
-        return esc_html__('Informative Textbox', 'custom-elementor');
+        return esc_html__('Informatiivne Tekstikast', 'custom-elementor');
     }
 
     //Lisame widgetile ise valitud ikooni, mis vastab rohkem selle funktsionaalsusega
@@ -158,7 +158,7 @@ class Informative_Textbox extends \Elementor\Widget_Base
                 //Anname sellele nime Sisu
                 'label' => esc_html__('Sisu', 'custom-elementor'),
                 //Anname sellele tuubiks TEXTAREA, sest sellel on rohkem ruumi kui TEXTil
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'type' => \Elementor\Controls_Manager::WYSIWYG,
                 //Teeme kasti nahtavaks
                 'label_block' => true,
                 //Lisame ajutise sisu, et lahter ei oleks alguses tuhi
@@ -190,6 +190,25 @@ class Informative_Textbox extends \Elementor\Widget_Base
                     'width' => '400',
                     'height' => '400',
                 ],
+            ]
+        );
+        //Lisame float funktsionaalsuse pildi jaoks, et kasutaja saaks valida, kus positsioonis pilti naidata
+        $this->add_control(
+            'textbox_image_alignment',
+            [
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'label' => esc_html__('Positsioon', 'custom-elementor'),
+                'options' => [
+                    'vasak' => [
+                        'title' => esc_html__('Vasak', 'custom-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'parem' => [
+                        'title' => esc_html__('Parem', 'custom-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'left',
             ]
         );
         //Lopetame sisu loomise sektsiooni
@@ -225,9 +244,9 @@ class Informative_Textbox extends \Elementor\Widget_Base
             'title_color',
             [
                 //NIMI
-                'title'=>'Vaheta Pealkirja Värv',
+                'title' => 'Vaheta Pealkirja Värv',
                 //TUUP
-                'type'=> \Elementor\Controls_Manager::COLOR,
+                'type' => \Elementor\Controls_Manager::COLOR,
                 //VAIKIMISI VAARTUS
                 'default' => '#f00',
                 //MIDA ME HTMLIS MUUDAME
@@ -259,10 +278,10 @@ class Informative_Textbox extends \Elementor\Widget_Base
         $this->add_control(
             'description_color',
             [
-                'title'=>'Vaheta Sisu Värv',
-                'type'=> \Elementor\Controls_Manager::COLOR,
-                'default'=>'#000',
-                'selectors'=> [
+                'title' => 'Vaheta Sisu Värv',
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#000',
+                'selectors' => [
                     '{{WRAPPER}} p' => 'color: {{VALUE}}',
                 ]
             ]
@@ -270,8 +289,8 @@ class Informative_Textbox extends \Elementor\Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name'=>'description_typography',
-                'selector'=> '{{WRAPPER}} p',
+                'name' => 'description_typography',
+                'selector' => '{{WRAPPER}} p',
             ]
         );
         //Pealkirja stiilid loppevad siin
@@ -300,17 +319,33 @@ class Informative_Textbox extends \Elementor\Widget_Base
         $textbox_image = $settings['textbox_image']['url'];
         $image_height = $settings['textbox_image_dimension']['height'];
         $image_width = $settings['textbox_image_dimension']['width'];
+        $image_position = $settings['textbox_image_alignment'];
 
         //Tahtis on nuud PHP kood kinni panna, et saaksime kirjutada HTML,CSS,JavaScript koodi nuud edasi
         //Hiljem avame jalle vajaliku PHP koodi
+        //Lisame nuud positsiooni pohjal kontrolli, et kus kohas pilt peab paiknema
 ?>
+        <style>
+            .textbox-content {
+                overflow: hidden;
+            }
+
+            .textbox-image {
+                float: <?php echo $image_position == 'vasak' ? 'left' : 'right' ?>;
+                margin-right: 10px;
+            }
+
+            .textbox-text p {
+                overflow-wrap: break-word;
+            }
+        </style>
         <div>
             <h3 class="textbox-title"><?php echo $textbox_title ?></h3>
-            <div class="textbox-container">
-                <div class="textbox-left">
-                    <img src="<?php echo $textbox_image ?>" width="<?php echo $image_width ?>" height="<?php echo $image_height ?>"/>
+            <div class="textbox-content">
+                <div class="textbox-image">
+                    <img src="<?php echo $textbox_image ?>" width="<?php echo $image_width ?>" height="<?php echo $image_height ?>" />
                 </div>
-                <div class="textbox-right">
+                <div class="textbox-text">
                     <p><?php echo $textbox_description ?></p>
                 </div>
             </div>
