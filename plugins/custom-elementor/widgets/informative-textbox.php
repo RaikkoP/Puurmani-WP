@@ -130,7 +130,7 @@ class Informative_Textbox extends \Elementor\Widget_Base
             'content_section',
             [
                 //Sektsiooni nimi
-                'label' => esc_html__('Content', 'custom-elementor'),
+                'label' => esc_html__('Sisu', 'custom-elementor'),
                 //Paigutame sektsiooni CONTENT tabi
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
@@ -177,6 +177,19 @@ class Informative_Textbox extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 //Teeme meedia valiku kasti nahtavaks
                 'label_block' => true,
+            ]
+        );
+        //Lisame voimaluse muuta pildi suurust nii nagu soovid
+        $this->add_control(
+            'textbox_image_dimension',
+            [
+                'label' => esc_html__('Pildi suurus', 'custom-elementor'),
+                'type' => \Elementor\Controls_Manager::IMAGE_DIMENSIONS,
+                'description' => esc_html__('Vaheta pildi suuruseid', 'custom-elementor'),
+                'default' => [
+                    'width' => '400',
+                    'height' => '400',
+                ],
             ]
         );
         //Lopetame sisu loomise sektsiooni
@@ -285,6 +298,8 @@ class Informative_Textbox extends \Elementor\Widget_Base
         $textbox_title = $settings['textbox_title'];
         $textbox_description = $settings['textbox_description'];
         $textbox_image = $settings['textbox_image']['url'];
+        $image_height = $settings['textbox_image_dimension']['height'];
+        $image_width = $settings['textbox_image_dimension']['width'];
 
         //Tahtis on nuud PHP kood kinni panna, et saaksime kirjutada HTML,CSS,JavaScript koodi nuud edasi
         //Hiljem avame jalle vajaliku PHP koodi
@@ -293,7 +308,7 @@ class Informative_Textbox extends \Elementor\Widget_Base
             <h3 class="textbox-title"><?php echo $textbox_title ?></h3>
             <div class="textbox-container">
                 <div class="textbox-left">
-                    <img src="<?php echo $textbox_image ?>" />
+                    <img src="<?php echo $textbox_image ?>" width="<?php echo $image_width ?>" height="<?php echo $image_height ?>"/>
                 </div>
                 <div class="textbox-right">
                     <p><?php echo $textbox_description ?></p>
