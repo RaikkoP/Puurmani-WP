@@ -1,7 +1,7 @@
 <?php
 
 //Iga plugina osa jaoks on vaja eraldi luua turvalisuse kontroll
-if(!defined("ABSPATH")){
+if (!defined("ABSPATH")) {
     exit; //Sulge, kui keegi proovib manuaalselt ligi saada
 }
 
@@ -13,7 +13,8 @@ if(!defined("ABSPATH")){
  * 
  * @since 1.0.0
  */
-class Informative_Textbox extends \Elementor\Widget_Base {
+class Informative_Textbox extends \Elementor\Widget_Base
+{
     //Widget informatsioon laheb siia funktsiooni
     //Esimesena oleks vaja anda meie widgetile ID
     //WorPressis saab olla ID inimloetav seega paneme Informativ Box
@@ -30,9 +31,10 @@ class Informative_Textbox extends \Elementor\Widget_Base {
      * @return string Widget name
      */
 
-     //Tegemist on sisseehitatud Elementori funktsiooniga, mis paneb widgetitele
-     //Vajaliku ID
-    public function get_name() {
+    //Tegemist on sisseehitatud Elementori funktsiooniga, mis paneb widgetitele
+    //Vajaliku ID
+    public function get_name()
+    {
         return 'informative_box'; //ID
     }
 
@@ -50,7 +52,8 @@ class Informative_Textbox extends \Elementor\Widget_Base {
      */
 
     //Tegemist on sisse ehitatud Elementor funktiooniga, mis paneb loetava tiitli meie widgetile
-    public function get_title() {
+    public function get_title()
+    {
         return esc_html__('Informative Textbox', 'custom-elementor');
     }
 
@@ -66,9 +69,37 @@ class Informative_Textbox extends \Elementor\Widget_Base {
      * @return string Widget icon
      */
 
-    // public function get_icon() {
-    //     return 'eicon-info-box';
-    // }
-     //Sisseehitatud funktsioon mis votab Elementori ikoonide andmebaasist kindla ikooni 
-     //ja valjastab selle Elementori vasakusse menuusse
+    public function get_icon()
+    {
+        return 'eicon-info-box';
+    }
+
+    /**
+     * Get widget categories.
+     * 
+     * Retrieve the list of categories the widget belongs to
+     *  
+     * @since 1.0.0
+     * @access public
+     * @return array Widget categories
+     */
+    public function get_categories()
+    {
+        return ['general'];
+    }
+    //Sisseehitatud funktsioon mis votab Elementori ikoonide andmebaasist kindla ikooni 
+    //ja valjastab selle Elementori vasakusse menuusse
+
+    /**
+     * Get widget keywords
+     * 
+     * Retrieve widget keywords for search
+     * 
+     * @since 1.0.0
+     * @access public
+     * @return array Widget keywords
+     */
+    public function get_keywords() {
+        return ['informative','information','textbox'];
+    }
 }
