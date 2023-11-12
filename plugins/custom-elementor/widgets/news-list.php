@@ -5,6 +5,13 @@ if (!defined("ABSPATH")) {
     exit;
 }
 
+//Widgeti enda METADATA, kirjeldab milleks vajalik ja milal loodud
+/**
+ * Custom Elementor New Box
+ * Shows Posts as news and allows customization as needed
+ * 
+ * @since 1.0.0
+ */
 class News_List extends \Elementor\Widget_Base
 {
     public function get_name()
