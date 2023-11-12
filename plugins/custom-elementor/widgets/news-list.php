@@ -114,32 +114,115 @@ class News_List extends \Elementor\Widget_Base
         $title = [];
         $image = [];
         $description = [];
+        //Salvestame nuud informatsiooni oigesse lahtrisse
         foreach ($response as $data) {
             array_push($date, $data['date']);
             array_push($title, $data['title']['rendered']);
-            array_push($image, $data['_links']['wp:featuredmedia'][0]['href']);
+            //Kuna pildi URL on natuke rohkem peidus siis kasutame nested funktsiooni
+            $image_response = json_decode(callAPI($data['_links']['wp:featuredmedia'][0]['href']), true);
+            array_push($image, $image_response['guid']['rendered']);
             array_push($description, $data['excerpt']['rendered']);
             array_push($link_to_post, $data['link']);
         }
 ?>
         <style>
+            .news_container {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                grid-gap: 10px;
+            }
 
+            .image_col {
+                grid-row: span 3;
+            }
         </style>
         <div class="news_container">
-            <div>
+            <div class="image_col">
                 <img src="<?php echo $image[0] ?>" width="200" height="200" />
             </div>
-            <div>
+            <div class="text_col">
                 <div>
                     <a href="<?php echo $link_to_post[0] ?>">
                         <h3><?php echo $title[0] ?></h3>
                     </a>
                 </div>
                 <div>
-                    <h3><?php echo $date[0] ?></h3>
+                    <p><?php echo $date[0] ?></p>
                 </div>
                 <div>
-                    <h3><?php echo $description[1] ?></h3>
+                    <p><?php echo $description[0] ?></p>
+                </div>
+            </div>
+        </div>
+        <div class="news_container">
+            <div class="image_col">
+                <img src="<?php echo $image[1] ?>" width="200" height="200" />
+            </div>
+            <div class="text_col">
+                <div>
+                    <a href="<?php echo $link_to_post[1] ?>">
+                        <h3><?php echo $title[1] ?></h3>
+                    </a>
+                </div>
+                <div>
+                    <p><?php echo $date[1] ?></p>
+                </div>
+                <div>
+                    <p><?php echo $description[1] ?></p>
+                </div>
+            </div>
+        </div>
+        <div class="news_container">
+            <div class="image_col">
+                <img src="<?php echo $image[2] ?>" width="200" height="200" />
+            </div>
+            <div class="text_col">
+                <div>
+                    <a href="<?php echo $link_to_post[2] ?>">
+                        <h3><?php echo $title[2] ?></h3>
+                    </a>
+                </div>
+                <div>
+                    <p><?php echo $date[2] ?></p>
+                </div>
+                <div>
+                    <p><?php echo $description[2] ?></p>
+                </div>
+            </div>
+        </div>
+        <div class="news_container">
+            <div class="image_col">
+                <img src="<?php echo $image[3] ?>" width="200" height="200" />
+            </div>
+            <div class="text_col">
+                <div>
+                    <a href="<?php echo $link_to_post[3] ?>">
+                        <h3><?php echo $title[3] ?></h3>
+                    </a>
+                </div>
+                <div>
+                    <p><?php echo $date[3] ?></p>
+                </div>
+                <div>
+                    <p><?php echo $description[3] ?></p>
+                </div>
+            </div>
+        </div>
+        <div class="news_container">
+            <div class="image_col">
+                <img src="<?php echo $image[4] ?>" width="200" height="200" />
+            </div>
+            <div class="text_col">
+                <div>
+                    <a href="<?php echo $link_to_post[4] ?>">
+                        <h3><?php echo $title[4] ?></h3>
+                    </a>
+                </div>
+                <div>
+                    <p><?php echo $date[4] ?></p>
+                </div>
+                <div>
+                    <p><?php echo $description[4] ?></p>
                 </div>
             </div>
         </div>
