@@ -196,7 +196,7 @@ class News_List extends \Elementor\Widget_Base
                 padding: 10px;
             }
         </style>
-        <div class="news_container">
+        <div style="margin-bottom: 10px" class="news_container">
             <div class="image_col">
                 <img src="<?php echo $image[0] ?>" width="200" height="200" />
             </div>
@@ -214,7 +214,7 @@ class News_List extends \Elementor\Widget_Base
                 </div>
             </div>
         </div>
-        <div class="news_container">
+        <div style="margin-bottom: 10px" class="news_container">
             <div class="image_col">
                 <img src="<?php echo $image[1] ?>" width="200" height="200" />
             </div>
@@ -232,7 +232,7 @@ class News_List extends \Elementor\Widget_Base
                 </div>
             </div>
         </div>
-        <div class="news_container">
+        <div style="margin-bottom: 10px" class="news_container">
             <div class="image_col">
                 <img src="<?php echo $image[2] ?>" width="200" height="200" />
             </div>
@@ -250,7 +250,7 @@ class News_List extends \Elementor\Widget_Base
                 </div>
             </div>
         </div>
-        <div class="news_container">
+        <div style="margin-bottom: 10px" class="news_container">
             <div class="image_col">
                 <img src="<?php echo $image[3] ?>" width="200" height="200" />
             </div>
