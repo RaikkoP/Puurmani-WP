@@ -107,7 +107,7 @@ class Informative_Textbox extends \Elementor\Widget_Base
     {
         //Elementori funktsioon, mis lisab vajalikud otsingumootori sonad
         //Sonad, kuidas saab otsida widgetit
-        return ['informative', 'information', 'textbox'];
+        return ['informative', 'information', 'textbox','puurmani'];
     }
 
 
@@ -175,6 +175,9 @@ class Informative_Textbox extends \Elementor\Widget_Base
                 //Kasutame selle jaoks valikut nimega MEDIA
                 //MEDIA ei ole tekstilahter vaid laseb pilte uleslaadida WordPressi andmebaasi
                 'type' => \Elementor\Controls_Manager::MEDIA,
+                'default' => [
+					'url' => "",
+				],
                 //Teeme meedia valiku kasti nahtavaks
                 'label_block' => true,
             ]
@@ -324,29 +327,18 @@ class Informative_Textbox extends \Elementor\Widget_Base
         //Tahtis on nuud PHP kood kinni panna, et saaksime kirjutada HTML,CSS,JavaScript koodi nuud edasi
         //Hiljem avame jalle vajaliku PHP koodi
         //Lisame nuud positsiooni pohjal kontrolli, et kus kohas pilt peab paiknema
+        //Kui pilti pole lisatud, siis me ei naita seda vaid naitame ainult teksti
 ?>
-        <style>
-            .textbox-content {
-                overflow: hidden;
-            }
-
-            .textbox-image {
-                float: <?php echo $image_position == 'vasak' ? 'left' : 'right' ?>;
-                margin-right: 10px;
-            }
-
-            .textbox-text p {
-                overflow-wrap: break-word;
-            }
-        </style>
         <div>
             <h3 class="textbox-title"><?php echo $textbox_title ?></h3>
-            <div class="textbox-content">
-                <div class="textbox-image">
+            <div style="overflow: hidden;" class="textbox-content">
+            <?php if ( $textbox_image != '') : ?>
+                <div style="float: <?php echo $image_position == 'vasak' ? 'left' : 'right' ?>; margin-right: 10px;" class="textbox-image">
                     <img src="<?php echo $textbox_image ?>" width="<?php echo $image_width ?>" height="<?php echo $image_height ?>" />
                 </div>
-                <div class="textbox-text">
-                    <p><?php echo $textbox_description ?></p>
+            <?php endif; ?>
+                <div style="text-align: justify;  text-justify: inter-word;" class="textbox-text">
+                    <p style="overflow-wrap: break-word;"><?php echo $textbox_description ?></p>
                 </div>
             </div>
         </div>
