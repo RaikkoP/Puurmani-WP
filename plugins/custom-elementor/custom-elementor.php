@@ -39,8 +39,10 @@
 
   function register_custom_elementor( $widgets_manager){
     require_once(__DIR__ . '/widgets/informative-textbox.php');
+    require_once(__DIR__. '/widgets/news-list.php');
 
     $widgets_manager->register(new \Informative_Textbox());
+    $widgets_manager->register(new \News_List());
   }
   //Action on koodi osa, mida me saame kasutada WordPressis, et lisada
   //Uusi pluginaid ilma, et me peaksime muutma susteemi enda arhitektuuri
