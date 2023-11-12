@@ -60,6 +60,7 @@ class News_List extends \Elementor\Widget_Base
                 ]
             ]
         );
+        //Saame muuta pealkirja tagust varvi
         $this->add_control(
             'post_title_background',
             [
@@ -71,6 +72,7 @@ class News_List extends \Elementor\Widget_Base
                 ]
             ]
         );
+        //Teeme nii, et kasutaja saab vahetada teksti seonduvat informatsioon nagu soovib
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
@@ -78,6 +80,48 @@ class News_List extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} h3'
             ]
         );
+        //Teeme containeri sisse alapealkirjaga osa nimega sisu seaded
+        $this->add_control(
+            'news_posts_style_desc',
+            [
+                'label' => esc_html__('Sisu Seaded', 'custom-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        //Lisame koodi sisu varvi muutmiseks
+        $this->add_control(
+            'post_description',
+            [
+                'label' => esc_html__('Sisu värv', 'custom-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#000',
+                'selectors' => [
+                    '{{WRAPPER}} p' => 'color: {{VALUE}}'
+                ]
+            ]
+        );
+        //Muudame sisu tausta varvi
+        $this->add_control(
+            'post_description_background',
+            [
+                'label' => esc_html__('Sisu taustavärv', 'custom-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#fff',
+                'selectors' => [
+                    '{{WRAPPER}} p' => 'background-color: {{VALUE}}'
+                ]
+            ]
+        );
+        //Sisu teksti seadeid saab muuta
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'post_description_typography',
+                'selector' => '{{WRAPPER}} p'
+            ]
+        );
+
 
         $this->end_controls_section();
     }
@@ -116,7 +160,10 @@ class News_List extends \Elementor\Widget_Base
         $description = [];
         //Salvestame nuud informatsiooni oigesse lahtrisse
         foreach ($response as $data) {
-            array_push($date, $data['date']);
+            //Muudame kuupaev selliseks, et see naeb veebilehe peal normaalne valja, lisaks kellaaeg pole oluline uudise jaoks
+            $dateTime = new DateTime($data['date']);
+            $formattedDate = $dateTime->format('d.m.Y');
+            array_push($date, $formattedDate);
             array_push($title, $data['title']['rendered']);
             //Kuna pildi URL on natuke rohkem peidus siis kasutame nested funktsiooni
             $image_response = json_decode(callAPI($data['_links']['wp:featuredmedia'][0]['href']), true);
@@ -141,6 +188,7 @@ class News_List extends \Elementor\Widget_Base
             }
             .text_col h3{
                 margin-top: 0;
+                padding: 10px;
             }
         </style>
         <div class="news_container">
@@ -154,10 +202,10 @@ class News_List extends \Elementor\Widget_Base
                     </a>
                 </div>
                 <div>
-                    <p><?php echo $date[0] ?></p>
+                    <p class="news_time"><?php echo $date[0] ?></p>
                 </div>
                 <div>
-                    <p><?php echo $description[0] ?></p>
+                    <p class="news_description"></p><?php echo $description[0] ?></p>
                 </div>
             </div>
         </div>
@@ -172,10 +220,10 @@ class News_List extends \Elementor\Widget_Base
                     </a>
                 </div>
                 <div>
-                    <p><?php echo $date[1] ?></p>
+                    <p class="news_time"><?php echo $date[1] ?></p>
                 </div>
                 <div>
-                    <p><?php echo $description[1] ?></p>
+                    <p class="news_description"></p><?php echo $description[1] ?></p>
                 </div>
             </div>
         </div>
@@ -190,10 +238,10 @@ class News_List extends \Elementor\Widget_Base
                     </a>
                 </div>
                 <div>
-                    <p><?php echo $date[2] ?></p>
+                    <p class="news_time"><?php echo $date[2] ?></p>
                 </div>
                 <div>
-                    <p><?php echo $description[2] ?></p>
+                    <p class="news_description"></p><?php echo $description[2] ?></p>
                 </div>
             </div>
         </div>
@@ -208,10 +256,10 @@ class News_List extends \Elementor\Widget_Base
                     </a>
                 </div>
                 <div>
-                    <p><?php echo $date[3] ?></p>
+                    <p class="news_time"><?php echo $date[3] ?></p>
                 </div>
                 <div>
-                    <p><?php echo $description[3] ?></p>
+                    <p class="news_description"></p><?php echo $description[3] ?></p>
                 </div>
             </div>
         </div>
