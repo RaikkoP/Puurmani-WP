@@ -338,7 +338,7 @@ class Informative_Textbox extends \Elementor\Widget_Base
                 </div>
             <?php endif; ?>
                 <div style="text-align: justify;  text-justify: inter-word;" class="textbox-text">
-                    <p style="overflow-wrap: break-word;"><?php echo $textbox_description ?></p>
+                    <p style="overflow-wrap: break-word; margin: 0;"><?php echo $textbox_description ?></p>
                 </div>
             </div>
         </div>

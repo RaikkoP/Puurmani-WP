@@ -105,7 +105,7 @@ class News_List extends \Elementor\Widget_Base
             return $result;
         }
         //Votame kasutusele nuud API kaudu saadud informatsiooni
-        $get_data = callAPI('https://puurmani.edu.ee/kool/wp-json/wp/v2/posts?per_page=5');
+        $get_data = callAPI('https://puurmani.edu.ee/kool/wp-json/wp/v2/posts?per_page=4');
         //Kuna vastus on JSON data siis on vaja see teha PHP loetavaks
         $response = json_decode($get_data, true);
         //Teeme kiiresti eraldi listid informatsioonist mida soovime naidata
@@ -134,6 +134,13 @@ class News_List extends \Elementor\Widget_Base
 
             .image_col {
                 grid-row: span 3;
+            }
+
+            .text_col {
+                margin-top: 0;
+            }
+            .text_col h3{
+                margin-top: 0;
             }
         </style>
         <div class="news_container">
@@ -205,24 +212,6 @@ class News_List extends \Elementor\Widget_Base
                 </div>
                 <div>
                     <p><?php echo $description[3] ?></p>
-                </div>
-            </div>
-        </div>
-        <div class="news_container">
-            <div class="image_col">
-                <img src="<?php echo $image[4] ?>" width="200" height="200" />
-            </div>
-            <div class="text_col">
-                <div>
-                    <a href="<?php echo $link_to_post[4] ?>">
-                        <h3><?php echo $title[4] ?></h3>
-                    </a>
-                </div>
-                <div>
-                    <p><?php echo $date[4] ?></p>
-                </div>
-                <div>
-                    <p><?php echo $description[4] ?></p>
                 </div>
             </div>
         </div>
