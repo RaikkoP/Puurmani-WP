@@ -1,7 +1,5 @@
 <?php
 
-use Elementor\Controls_Manager;
-
 //Turvalisuse tagamiseks ei lase source codeile veebilehelt ligi
 if (!defined("ABSPATH")) {
     exit;

@@ -38,11 +38,16 @@
   //tahendab, et me ei valjasta kindlat andmetuupi
 
   function register_custom_elementor( $widgets_manager){
+    //Informatiivne tekstikast, mida saab mitmel viisil kasutada
     require_once(__DIR__ . '/widgets/informative-textbox.php');
+    //Uudiste lahter, kuhu tulevad koik uued uudised ja mida saab stiliseerida
     require_once(__DIR__. '/widgets/news-list.php');
+    //Koostoo partnerite logode carousel
+    require_once(__DIR__. '/widgets/sponsors.php');
 
     $widgets_manager->register(new \Informative_Textbox());
     $widgets_manager->register(new \News_List());
+    $widgets_manager->register(new \Sponsors_Carousel());
   }
   //Action on koodi osa, mida me saame kasutada WordPressis, et lisada
   //Uusi pluginaid ilma, et me peaksime muutma susteemi enda arhitektuuri
